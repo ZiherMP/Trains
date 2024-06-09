@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gra w Phaserze</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/3.55.2/phaser.min.js"></script>
+</head>
+<body>
+  <canvas id="game"></canvas>
+  <script>
+    // Utwórz nową grę Phaser
+    var game = new Phaser.Game({
+      width: 800,
+      height: 600,
+      scene: {
+        preload: preload,
+        create: create,
+        update: update
+      }
+    });
+
+    // Funkcja ładująca zasoby gry
+    function preload() {
+      // Załaduj grafikę gracza
+      game.load.image("player", "assets/player.png");
+
+      // Załaduj grafikę tła
+      game.load.image("background", "assets/background.png");
+    }
+
+    // Funkcja uruchamiana po załadowaniu gry
+    function create() {
+      // Utwórz gracza
+      var player = game.add.sprite(200, 200, "player");
+
+      // Utwórz tło
+      var background = game.add.tileSprite(0, 0, 800, 600, "background");
+    }
+
+    // Funkcja wykonywana w każdym cyklu gry
+    function update() {
+      // Porusz gracza w lewo i prawo
+      if (game.input.keyboard.isDown("left")) {
+        player.x -= 5;
+      }
+      if (game.input.keyboard.isDown("right")) {
+        player.x += 5;
+      }
+    }
+  </script>
+</body>
+</html>
